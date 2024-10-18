@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ toggleView }) => {
+const Login = ({ setIsAuthenticated }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const [baseUrl, setBaseUrl] = useState('baseUrl');
+    const baseUrl = 'https://base-url'; // Replace with your base URL
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -22,16 +22,24 @@ const Login = ({ toggleView }) => {
 
         try {
             const response = await axios.post(`${baseUrl}/login`, { email, password });
-            const { token, profileImageUrl } = response.data; // Ensure this token is in JWT format
-            console.log('Token received:', token); // Log the token for debugging
-            localStorage.setItem('authToken', token); // Save token in localStorage
-            localStorage.setItem('profileImageUrl', profileImageUrl); // Save profile image URL
-            navigate('/profile'); // Redirect to profile
+            const { token, profileImageUrl } = response.data;
+
+            // Store token and profile image URL in localStorage
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('profileImageUrl', profileImageUrl);
+
+            setLoading(false);
+
+            // Set authentication status to true in the parent component
+            setIsAuthenticated(true); // Update authentication state
+
+            // Redirect to profile page immediately after login
+            navigate('/profile', { replace: true });
         } catch (error) {
             console.error('Login error:', error);
             setMessage('Login failed. Please try again.');
+            setLoading(false);
         }
-        console.log('Logging in:', { email, password });
     };
 
     return (
@@ -54,7 +62,7 @@ const Login = ({ toggleView }) => {
                 {loading ? 'Logging in...' : 'Login'}
             </button>
             {message && <p>{message}</p>}
-            <p>Don't have an account? <button type="button" onClick={toggleView}>Sign Up</button></p>
+            <p>Don't have an account? <button type="button" onClick={() => navigate('/signup')}>Sign Up</button></p>
         </form>
     );
 };

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,7 +11,9 @@ const Signup = ({ toggleView }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
     const [isUploading, setIsUploading] = useState(false);
-    const [baseUrl, setBaseUrl] = useState('baseUrl');
+    const [baseUrl, setBaseUrl] = useState('https://base-url');
+
+    const navigate = useNavigate();
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -88,7 +91,7 @@ const Signup = ({ toggleView }) => {
                 {isUploading ? 'Uploading...' : 'Sign Up and Upload'}
             </button>
             {message && <p>{message}</p>}
-            <p>Already have an account? <button type="button" onClick={toggleView}>Login</button></p>
+            <p>Already have an account? <button type="button" onClick={() => navigate('/login')}>Login</button></p>
         </form>
     );
 };
