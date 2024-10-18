@@ -1,0 +1,75 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.App {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.error {
+  color: red;
+}
+
+.image-preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.profile-image {
+  max-width: 150px;
+  height: 120px !important;
+  /* Set a specific width for the image preview */
+  height: auto;
+  /* Maintain aspect ratio */
+  border-radius: 50%;
+  /* Make it circular */
+  border: 2px solid #28a745;
+  /* Optional: Add a border */
+}
