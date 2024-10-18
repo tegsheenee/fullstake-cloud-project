@@ -18,7 +18,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>{isSignup ? 'Sign Up' : 'Login'}</h1>
       <Routes>
         <Route path="/" element={isAuthenticated() ? <Navigate to="/profile" /> : isSignup ? <Signup toggleView={toggleView} /> : <Login toggleView={toggleView} />} />
         <Route path="/profile" element={isAuthenticated() ? <Profile /> : <Navigate to="/" />} />

@@ -8,6 +8,8 @@ const Profile = () => {
     const [newImage, setNewImage] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [message, setMessage] = useState('');
+    const [bucket_name, setBucketName] = useState("bucket-name"); //code-change
+    const [baseUrl, setBaseUrl] = useState('baseUrl');
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
@@ -61,7 +63,7 @@ const Profile = () => {
 
         try {
             // Call the backend to update the profile image
-            const response = await axios.put('https://ynw120kvuh.execute-api.us-east-1.amazonaws.com/k-prod/updateProfileImage', {
+            const response = await axios.put(`${baseUrl}/updateProfileImage`, {
                 email,
                 oldImageKey,
                 newFilename: uniqueFilename,
@@ -76,7 +78,8 @@ const Profile = () => {
             });
 
             // Update local storage and state
-            const updatedImageUrl = `https://k-storage-images.s3.amazonaws.com/${uniqueFilename}`;
+            const updatedImageUrl = `https://${bucket_name}.s3.amazonaws.com/${uniqueFilename}`;
+            console.log(updatedImageUrl);
             localStorage.setItem('profileImageUrl', updatedImageUrl);
             setImage(updatedImageUrl);
             setMessage('Image uploaded successfully!');

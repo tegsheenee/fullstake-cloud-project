@@ -8,6 +8,7 @@ const Login = ({ toggleView }) => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const [baseUrl, setBaseUrl] = useState('baseUrl');
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -20,7 +21,7 @@ const Login = ({ toggleView }) => {
         setMessage('');
 
         try {
-            const response = await axios.post('https://ynw120kvuh.execute-api.us-east-1.amazonaws.com/k-prod/login', { email, password });
+            const response = await axios.post(`${baseUrl}/login`, { email, password });
             const { token, profileImageUrl } = response.data; // Ensure this token is in JWT format
             console.log('Token received:', token); // Log the token for debugging
             localStorage.setItem('authToken', token); // Save token in localStorage
