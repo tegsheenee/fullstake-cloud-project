@@ -31,7 +31,7 @@ const App = () => {
         />
         <Route
           path="/login"
-          element={<Login />}
+          element={<Login setIsAuthenticated={setIsAuthenticated} />}  // Pass setIsAuthenticated here
         />
         <Route
           path="/profile"

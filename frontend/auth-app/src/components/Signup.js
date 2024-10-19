@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-const Signup = ({ toggleView }) => {
+const Signup = () => {
     const [file, setFile] = useState(null);
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -13,10 +13,25 @@ const Signup = ({ toggleView }) => {
     const [isUploading, setIsUploading] = useState(false);
     const baseUrl = process.env.REACT_APP_BASE_API;
 
-    const navigate = useNavigate();
+    const navigate = useNavigate();  // Using navigate for redirect
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        const selectedFile = e.target.files[0];
+
+        // File type validation (e.g., allow only images)
+        if (selectedFile && !selectedFile.type.startsWith('image/')) {
+            setMessage('Please select an image file.');
+            return;
+        }
+
+        // File size validation (e.g., max 5MB)
+        if (selectedFile && selectedFile.size > 5 * 1024 * 1024) {
+            setMessage('File size must be less than 5MB.');
+            return;
+        }
+
+        setFile(selectedFile);
+        setMessage('');
     };
 
     const handleUpload = async (event) => {
@@ -62,7 +77,7 @@ const Signup = ({ toggleView }) => {
             setMessage('Upload successful! Redirecting to login...');
             clearFields();
             setTimeout(() => {
-                toggleView(); // Switch to login after signup
+                navigate('/login');  // Redirecting to login page
             }, 2000);
         } catch (error) {
             console.error('Error uploading file:', error);
@@ -82,11 +97,40 @@ const Signup = ({ toggleView }) => {
 
     return (
         <form onSubmit={handleUpload} className="form-container">
-            <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <input type="text" placeholder="Enter your name" value={name} onChange={(e) => setName(e.target.value)} required />
-            <input type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            <input type="password" placeholder="Confirm your password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-            <input type="file" onChange={handleFileChange} required />
+            <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+            />
+            <input
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+            />
+            <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+            />
+            <input
+                type="password"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+            />
+            <input
+                type="file"
+                onChange={handleFileChange}
+                disabled={isUploading}
+                required
+            />
             <button type="submit" disabled={isUploading}>
                 {isUploading ? 'Uploading...' : 'Sign Up and Upload'}
             </button>
