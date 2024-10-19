@@ -8,7 +8,9 @@ const Login = ({ setIsAuthenticated }) => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const baseUrl = process.env.REACT_BASE_API; // Replace with your base URL
+    const baseUrl = process.env.REACT_APP_BASE_API; // Replace with your base URL
+
+    console.log("this", baseUrl);
 
     const handleLogin = async (e) => {
         e.preventDefault();

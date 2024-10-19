@@ -11,7 +11,7 @@ const Signup = ({ toggleView }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
     const [isUploading, setIsUploading] = useState(false);
-    const baseUrl = process.env.REACT_BASE_API;
+    const baseUrl = process.env.REACT_APP_BASE_API;
 
     const navigate = useNavigate();
 

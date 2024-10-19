@@ -9,7 +9,6 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  console.log(process.env.REACT_BUCKET_URL);
   // Check if token exists in localStorage to maintain session
   useEffect(() => {
     const token = localStorage.getItem('authToken');
