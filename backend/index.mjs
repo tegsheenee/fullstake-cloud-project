@@ -56,7 +56,7 @@ export const handler = async (event) => {
                     };
                 }
                 break;
-            case 'PUT':
+            case 'PATCH':
                 if (event.path === '/updateProfileImage') {
                     return await updateProfileImage(event);
                 }
@@ -215,6 +215,7 @@ const hashPasswordWithSalt = (password, salt) => {
 
 const updateProfileImage = async (event) => {
     const { email, oldImageKey, newFilename, newContentType } = JSON.parse(event.body);
+
     // Delete the old image from S3
     const deleteParams = {
         Bucket: bucketName,
@@ -249,7 +250,7 @@ const updateProfileImage = async (event) => {
         statusCode: 200,
         headers: {
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Methods': 'PATCH, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type',
         },
         body: JSON.stringify({ uploadURL }),
