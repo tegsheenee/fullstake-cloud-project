@@ -62,8 +62,8 @@ const Profile = () => {
         const contentType = newImage.type;
 
         try {
-            // Call the backend to update the profile image using PATCH instead of PUT
-            const response = await axios.patch(`${baseUrl}/updateProfileImage`, {
+            // Call the backend to update the profile image using POST instead of PATCH
+            const response = await axios.post(`${baseUrl}/updateProfileImage`, {
                 email,
                 oldImageKey,
                 newFilename: uniqueFilename,
