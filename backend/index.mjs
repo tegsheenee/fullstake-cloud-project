@@ -44,6 +44,8 @@ export const handler = async (event) => {
                     return await signUp(event);
                 } else if (event.path === '/login') {
                     return await login(event);
+                } else if (event.path === '/updateProfileImage') {
+                    return await updateProfileImage(event);
                 } else {
                     return {
                         statusCode: 404,
@@ -55,12 +57,6 @@ export const handler = async (event) => {
                         body: JSON.stringify({ message: 'Not Found' }),
                     };
                 }
-                break;
-            case 'PATCH':
-                if (event.path === '/updateProfileImage') {
-                    return await updateProfileImage(event);
-                }
-                break;
             default:
                 return {
                     statusCode: 405,
@@ -250,7 +246,7 @@ const updateProfileImage = async (event) => {
         statusCode: 200,
         headers: {
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'PATCH, OPTIONS',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type',
         },
         body: JSON.stringify({ uploadURL }),
