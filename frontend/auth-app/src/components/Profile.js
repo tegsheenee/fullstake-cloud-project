@@ -8,7 +8,7 @@ const Profile = () => {
     const [newImage, setNewImage] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [message, setMessage] = useState('');
-    const bucket_name = process.env.REACT_APP_BUCKET_URL;
+    const bucket_name = process.env.REACT_APP_BUCKET_URL
     const baseUrl = process.env.REACT_APP_BASE_API;
 
     useEffect(() => {
@@ -62,8 +62,8 @@ const Profile = () => {
         const contentType = newImage.type;
 
         try {
-            // Call the backend to update the profile image using POST instead of PATCH
-            const response = await axios.post(`${baseUrl}/updateProfileImage`, {
+            // Call the backend to update the profile image
+            const response = await axios.put(`${baseUrl}/updateProfileImage`, {
                 email,
                 oldImageKey,
                 newFilename: uniqueFilename,
