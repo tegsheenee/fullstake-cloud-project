@@ -44,8 +44,6 @@ export const handler = async (event) => {
                     return await signUp(event);
                 } else if (event.path === '/login') {
                     return await login(event);
-                } else if (event.path === '/updateProfileImage') {
-                    return await updateProfileImage(event);
                 } else {
                     return {
                         statusCode: 404,
