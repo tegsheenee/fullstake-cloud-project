@@ -57,6 +57,12 @@ export const handler = async (event) => {
                         body: JSON.stringify({ message: 'Not Found' }),
                     };
                 }
+                break;
+            case 'PUT':
+                if (event.path === '/updateProfileImage') {
+                    return await updateProfileImage(event);
+                }
+                break;
             default:
                 return {
                     statusCode: 405,
@@ -211,7 +217,6 @@ const hashPasswordWithSalt = (password, salt) => {
 
 const updateProfileImage = async (event) => {
     const { email, oldImageKey, newFilename, newContentType } = JSON.parse(event.body);
-
     // Delete the old image from S3
     const deleteParams = {
         Bucket: bucketName,
