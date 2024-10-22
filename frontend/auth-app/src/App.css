@@ -1,192 +1,75 @@
 body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: 'Jost', sans-serif;
-  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  padding: 20px;
 }
 
-/* Main container for forms */
-.form-container,
-.login-container,
-.signup-container,
-.profile-container {
-  width: 350px;
-  /* Slightly reduced width to create balance */
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-  padding: 30px 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
+.App {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Hover Effect */
-.form-container:hover,
-.login-container:hover,
-.signup-container:hover,
-.profile-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Form Header */
-form h2,
-.profile-container h2 {
-  margin-bottom: 20px;
-  font-size: 1.8em;
-  color: #573b8a;
+h1 {
   text-align: center;
 }
 
-/* Input Group Styling */
-.input-group {
-  width: 100%;
-  margin-bottom: 15px;
+.form-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  /* Align labels to the left for better UX */
 }
 
-.input-group label {
-  width: 100%;
-  margin-bottom: 5px;
-  color: #666;
-  font-size: 0.9em;
+input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.input-group input {
-  width: 100%;
-  /* Full width of container */
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #f0f0f0;
-  font-size: 1em;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.input-group input:focus {
-  border-color: #573b8a;
-  outline: none;
-  box-shadow: 0 0 5px rgba(87, 59, 138, 0.5);
-}
-
-/* File Input Styling */
-form input[type="file"] {
-  padding: 5px;
-}
-
-/* Buttons Styling */
 button {
-  width: 100%;
-  /* Full width of container */
-  padding: 12px;
+  padding: 10px;
+  background-color: #28a745;
   border: none;
-  background: #6d44b8;
-  color: #fff;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 8px;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s, box-shadow 0.3s;
-  margin-top: 15px;
+  margin-right: 10px;
 }
 
-button:hover {
-  background: #573b8a;
-  box-shadow: 0 5px 15px rgba(87, 59, 138, 0.3);
+button:disabled {
+  background-color: #ccc;
 }
 
-/* Error and Success Message Styling */
+.user-info {
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  max-width: 100%;
+  border-radius: 50%;
+}
+
 .error {
   color: red;
-  font-size: 0.9em;
-  margin: 10px 0;
 }
 
-.success {
-  color: green;
-  font-size: 0.9em;
-  margin: 10px 0;
-}
-
-
-/* Link Button for Navigation */
-p {
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: #666;
-  text-align: center;
-}
-
-p button {
-  background: none;
-  border: none;
-  color: #573b8a;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-p button:hover {
-  color: #302b63;
-}
-
-/* Profile Section Styling */
-.profile-container .user-info {
-  color: #666;
-  font-size: 1em;
-  text-align: left;
-  width: 100%;
-}
-
-.profile-container .user-info p {
-  margin: 5px 0;
-}
-
-.profile-container .image-preview {
+.image-preview {
   margin-top: 20px;
   text-align: center;
 }
 
-.profile-container .profile-image {
+.profile-image {
   max-width: 150px;
+  height: 120px !important;
+  /* Set a specific width for the image preview */
   height: auto;
-  border-radius: 10px;
-  border: 3px solid #6d44b8;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Profile Buttons */
-.profile-container button {
-  width: 100%;
-  max-width: 300px;
-}
-
-/* Center form content */
-.form-content {
-  width: 100%;
-}
-
-.form-content label,
-.form-content input {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-h2 {
-  color: #573b8a;
-  margin-bottom: 15px;
-  text-align: center;
+  /* Maintain aspect ratio */
+  border-radius: 50%;
+  /* Make it circular */
+  border: 2px solid #28a745;
+  /* Optional: Add a border */
 }
