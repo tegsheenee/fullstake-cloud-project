@@ -8,7 +8,7 @@ const Login = ({ setIsAuthenticated }) => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const baseUrl = process.env.REACT_APP_BASE_API; // Replace with your base URL
+    const baseUrl = process.env.REACT_APP_BASE_API;
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -29,8 +29,6 @@ const Login = ({ setIsAuthenticated }) => {
             localStorage.setItem('profileImageUrl', profileImageUrl);
 
             setLoading(false);
-
-            // Set authentication status to true in the parent component
             setIsAuthenticated(true); // Update authentication state
 
             // Redirect to profile page immediately after login
@@ -43,27 +41,41 @@ const Login = ({ setIsAuthenticated }) => {
     };
 
     return (
-        <form onSubmit={handleLogin} className="form-container">
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type="submit" disabled={loading}>
-                {loading ? 'Logging in...' : 'Login'}
-            </button>
-            {message && <p>{message}</p>}
-            <p>Don't have an account? <button type="button" onClick={() => navigate('/signup')}>Sign Up</button></p>
-        </form>
+        <div className="login-container form-container">
+            <form onSubmit={handleLogin} className="form-content">
+                <h2>Login</h2>
+                <div className="input-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="input-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Logging in...' : 'Login'}
+                </button>
+                {message && <p className="error">{message}</p>}
+                <p className="signup-link">
+                    Don't have an account?{' '}
+                    <button type="button" onClick={() => navigate('/signup')}>
+                        Sign Up
+                    </button>
+                </p>
+            </form>
+        </div>
     );
 };
 
