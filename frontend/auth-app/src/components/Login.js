@@ -59,7 +59,7 @@ const Login = ({ setIsAuthenticated }) => {
                 required
             />
             <button type="submit" disabled={loading}>
-                {loading ? 'Logging in...' : 'Login'}
+                {loading ? 'Logging in...' : 'Sign Up'}
             </button>
             {message && <p>{message}</p>}
             <p>Don't have an account? <button type="button" onClick={() => navigate('/signup')}>Create Account!</button></p>
