@@ -1,0 +1,20 @@
+  adding: index.mjs (deflated 78%)
+
+
+=========== Creating/Updating Lambda Function ===========
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+
+aws: error: argument --role: expected one argument
+
+
+An error occurred (ResourceNotFoundException) when calling the UpdateFunctionCode operation: Function not found: arn:aws:lambda:us-east-1:851725531573:function:AppLambdaFunction
+
+Error parsing parameter '--environment': Expected: ',', received: 'EOF' for input:
+Variables={bucket_name=cloudformation-infra-tegshe-orig-pr-reactappbucket-3qsialgvsphg,region=us-east-1,table_name=}
+                                                                                                                    ^
