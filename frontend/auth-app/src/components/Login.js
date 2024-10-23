@@ -62,7 +62,7 @@ const Login = ({ setIsAuthenticated }) => {
                 {loading ? 'Logging in...' : 'Login'}
             </button>
             {message && <p>{message}</p>}
-            <p>Don't have an account? <button type="button" onClick={() => navigate('/signup')}>Sign Up</button></p>
+            <p>Don't have an account? <button type="button" onClick={() => navigate('/signup')}>Create Account!</button></p>
         </form>
     );
 };
